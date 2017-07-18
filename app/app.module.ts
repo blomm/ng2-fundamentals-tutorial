@@ -13,6 +13,8 @@ import { appRoutes } from "./routes";
 import { CreateEventComponent } from "./events/create-event.component";
 import { RouteGuardService } from "./events/route-guard.service";
 import { Error404Component } from "./events/event-details/404";
+import { EventsListResolverService } from "./events/events-list-resolver.service";
+
 
 @NgModule({
     imports: [
@@ -32,6 +34,7 @@ import { Error404Component } from "./events/event-details/404";
     bootstrap: [EventsAppComponent],
     providers:[
         EventService, 
+        EventsListResolverService,
         RouteGuardService,
         {
             provide:'hasUserSavedEverything', useValue:checkDirtyState
