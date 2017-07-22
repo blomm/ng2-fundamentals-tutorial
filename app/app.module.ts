@@ -14,13 +14,18 @@ import { CreateEventComponent } from "./events/create-event.component";
 import { RouteGuardService } from "./events/route-guard.service";
 import { Error404Component } from "./events/event-details/404";
 import { EventsListResolverService } from "./events/events-list-resolver.service";
+import { AuthService } from "./user/auth.service";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { CreateSessionComponent } from "./events/event-details/create-session.component";
 
 
 @NgModule({
     imports: [
         BrowserModule,
         HttpModule,
-        RouterModule.forRoot(appRoutes)
+        FormsModule, 
+        ReactiveFormsModule,
+        RouterModule.forRoot(appRoutes,{ enableTracing: true })
     ],
     declarations: [
         EventsAppComponent,
@@ -29,11 +34,13 @@ import { EventsListResolverService } from "./events/events-list-resolver.service
         NavBarComponent,
         EventDetailsComponent,
         CreateEventComponent,
+        CreateSessionComponent,
         Error404Component
     ],
     bootstrap: [EventsAppComponent],
     providers:[
         EventService, 
+        AuthService,
         EventsListResolverService,
         RouteGuardService,
         {
