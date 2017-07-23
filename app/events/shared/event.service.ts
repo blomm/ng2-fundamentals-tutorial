@@ -20,6 +20,11 @@ export class EventService{
         return subject;
     }
 
+    updateEvent(event:IEvent){
+        let index = EVENTS.findIndex(e => e.id == event.id)
+        EVENTS[index]=event;
+    }
+
     getEvent(id:number): IEvent{
         return EVENTS.find(event=>event.id === id);
     }

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Output, EventEmitter } from '@angular/core'
 import { Validators, FormControl, FormGroup } from "@angular/forms";
 import { ISession } from "../shared/barrel";
 
 @Component({
+    selector:'create-session',
     templateUrl:'app/events/event-details/create-session.component.html',
     styles:[`
         em {float:right;color:#E05C65;padding-left:10px}
@@ -15,6 +16,9 @@ import { ISession } from "../shared/barrel";
 })
 
 export class CreateSessionComponent implements OnInit{
+    @Output() saveNewSession = new EventEmitter();
+    @Output() cancelNewSession = new EventEmitter();
+
     newSessionForm: FormGroup;
     duration: FormControl;
     abstract: FormControl;
@@ -40,7 +44,7 @@ export class CreateSessionComponent implements OnInit{
 
     createSession(formValues){
         let session:ISession={
-             abstract:formValues.abstract,
+            abstract:formValues.abstract,
             duration:+formValues.duration,
             level: formValues.level,
             name:formValues.name,
@@ -49,7 +53,11 @@ export class CreateSessionComponent implements OnInit{
             id:undefined
 
         }
-        console.log(session);
+        this.saveNewSession.emit(session)
+    }
+
+    cancel(){
+        this.cancelNewSession.emit(false);
     }
 
 }
