@@ -20,8 +20,14 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CreateSessionComponent } from "./events/event-details/create-session.component";
 import { SessionListComponent } from "./events/event-details/session-list.component";
 import { DurationPipe, EventService, CollapsibleWellComponent } from "./events/shared/barrel";
-import { TOASTR_TOKEN, IToastr } from "./events/common/toastr.service";
+import { 
+    JQUERY_TOKEN,
+    TOASTR_TOKEN, IToastr, 
+    SimpleModalComponent, 
+    ModalTriggerDirective
+} from  "./events/common/barrel";
 
+declare let jQuery:Object;
 declare let toastr:IToastr
 
 @NgModule({
@@ -42,6 +48,8 @@ declare let toastr:IToastr
         CreateSessionComponent,
         SessionListComponent,
         CollapsibleWellComponent,
+        SimpleModalComponent,
+        ModalTriggerDirective,
         DurationPipe,
         Error404Component
     ],
@@ -50,6 +58,10 @@ declare let toastr:IToastr
         EventService, 
         AuthService,
         EventsListResolverService,
+        {
+            provide:JQUERY_TOKEN,
+            useValue: jQuery
+        },
         {
             provide:TOASTR_TOKEN, 
             useValue: toastr
