@@ -20,4 +20,5 @@ export class EventThumbnailComponent{
         const isEarly = this.event && this.event.time == '8:00 am';
         return  {green: isEarly, bold: isEarly}
     }
+
 }
